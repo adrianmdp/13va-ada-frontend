@@ -18,11 +18,11 @@ for(let i = 0; i < nombres.length; i++) {
 
 }
 
-nombres.forEach(nombre => {
+// nombres.forEach(nombre => {
 
-    console.log(`Hola, soy ${nombre}`);
+//     console.log(`Hola, soy ${nombre}`);
 
-});
+// });
 
 const person1 = {
     id: 012,
@@ -39,6 +39,7 @@ const person1 = {
     ]
 }
 
+
 const person2 = {
     id: 890,
     name: "Sofi",
@@ -54,6 +55,12 @@ const person2 = {
     ]
 }
 
+for(prop in person2) {
+    console.log(prop, person2[prop]);
+}
+
+// console.log("Prop computada", person2["i" + "d"], person2["id"], person2.id);
+
 // console.log(person.friends)
 
 // person.operation("caminar");
@@ -62,7 +69,7 @@ const person2 = {
 
 const personas = [person1, person2];
 
-console.log(personas[1].email);
+// console.log(personas[1].email);
 
 
 

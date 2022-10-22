@@ -1,0 +1,23 @@
+
+
+.btn.btn-primary {
+	background-color: red;
+}
+
+.btn.btn-success {
+	background-color: green;
+}
+
+.btn > em + em {
+	color: yellow;
+}
+
+.btn.small {
+	width: 300px;
+	height: 30px;
+	font-size: 14px;
+}
+
+.small {
+	width: 400px;
+}

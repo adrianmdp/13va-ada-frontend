@@ -1,0 +1,30 @@
+.small { 
+    width: 400px;
+}
+
+.btn {
+
+    &.btn-primary {
+        background-color: red;
+    }
+
+    &.btn-success {
+        background-color: green;
+    }
+
+    em {
+        font-weight: bold;
+    }
+
+    &.samll {
+        height: 10px;
+        font-size: 8px;
+    }
+
+}
+
+.modal {
+    .small { 
+        width: 400px;
+    }
+}
