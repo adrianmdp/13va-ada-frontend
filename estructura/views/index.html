@@ -18,9 +18,9 @@
     </div>
 
     <main>
-        <form id="search-comics" action="">
+        <form id="search-comics">
 
-            <input type="password" name="contrasenia" >
+            <input type="text" name="query" />
 
             <select name="control-order-by" id="control-order-by" class="form-select" style="width: 300px;">
                 <option value="title">A - Z</option>
@@ -29,18 +29,23 @@
                 <option value="focDate">Más antiguos</option>
             </select>
 
-            <button class="btn btn-primary">Enviar</button>
+            <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
-    
-        <section id="comics-results">
-            
-            
 
-        </section>
+        <hr>
+
+        <h2>Acá debería mostrar el comic seleccionado</h2>
+
+        <button id="back-button" class="d-none">Back</button>
+        <div id="comic-detail"></div>
+
+        <hr>
+    
+        <section id="comics-results"></section>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <script src="../api/comics.js"></script>
-    <script src="../js/main.js"></script>
+    <script src="../js/index.js"></script>
 </body>
 </html>

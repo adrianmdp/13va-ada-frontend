@@ -1,0 +1,11 @@
+.card {
+
+    .card-body {
+        width: 800px;
+
+        @media(max-width: 992px) {
+            width: 90%;
+        }
+    }
+
+}

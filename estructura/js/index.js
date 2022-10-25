@@ -12,6 +12,7 @@ const loadComics = async () => {
     const comics = data.results;
 
     const results = document.getElementById('comics-results');
+    const backButton = document.getElementById('back-button');
     const container = document.createElement('div');
     const row = document.createElement('div');
 
@@ -29,6 +30,25 @@ const loadComics = async () => {
         const cardBody = document.createElement('div');
         const col = document.createElement('div');
         const title = document.createElement('h2');
+
+        // card.addEventListener('click', () => {
+        //     loadDetail(comic);
+        //     results.classList.add('d-none');
+        //     backButton.classList.remove('d-none');
+        // })
+
+        card.addEventListener('click', () => {
+
+            params.set('comicId', comic.id);
+
+            window.location.href = window.location.pathname + '/../detail.html?' + params.toString(); 
+
+        })
+
+        backButton.addEventListener('click', () => {
+            results.classList.remove('d-none');
+            backButton.classList.add('d-none');
+        })
 
         const titleText = document.createTextNode(comic.title);
 
@@ -51,8 +71,12 @@ const loadComics = async () => {
 
 }
 
+const init = () => {
+    loadComics();
+}
 
-loadComics();
+init();
+
 
 
 
@@ -75,3 +99,24 @@ formSearch.addEventListener('submit', e => {
     window.location.href = window.location.pathname + '?' + params.toString();
 
 })
+
+
+
+const loadDetail = (comic) => {
+
+    const comicDetail = document.getElementById('comic-detail');
+
+    comicDetail.classList.remove("d-none");
+
+    const title = document.createElement('h3');
+    const text = document.createTextNode(comic.title);
+    const div = document.createElement('div');
+
+    title.appendChild(text);
+
+    div.appendChild(document.createTextNode(comic.description));
+
+    comicDetail.appendChild(title);
+    comicDetail.appendChild(div);
+
+}
