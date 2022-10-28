@@ -1,17 +1,23 @@
+let page = 1;
+
+
 
 const loadComics = async () => {
 
     const params = new URLSearchParams(window.location.search);
 
-    const comicsRsponse = await getComics(
-        params.get('offset') ||  0, 
-        params.get('order') || "title" 
-    );
+    // const comicsRsponse = await getComics(
+    //     params.get('offset') ||  0, 
+    //     params.get('order') || "title" 
+    // );
+
+    const comicsRsponse = await getComics((page - 1) * 20, "title");
 
     const data = comicsRsponse.data
     const comics = data.results;
 
     const results = document.getElementById('comics-results');
+    results.innerHTML = "";
     const backButton = document.getElementById('back-button');
     const container = document.createElement('div');
     const row = document.createElement('div');
@@ -100,8 +106,6 @@ formSearch.addEventListener('submit', e => {
 
 })
 
-
-
 const loadDetail = (comic) => {
 
     const comicDetail = document.getElementById('comic-detail');
@@ -120,3 +124,95 @@ const loadDetail = (comic) => {
     comicDetail.appendChild(div);
 
 }
+
+const searchComics = () => {
+
+
+    fetch(`endpoint?offset=${(page - 1) * 20}` )
+
+    console.log(page);
+    // const pageNode = document.createElement('h1');
+    // const pageNodeText = document.createTextNode(page);
+
+    // pageNode.appendChild(pageNodeText);
+
+    
+}
+
+
+
+
+
+
+const buttons = [
+    { 
+        text: "<<", 
+        class: "btn",
+        onClick: () => {
+            page = 1;
+            loadComics();
+        }
+    },
+    { 
+        text: page - 1, 
+        class: "btn",
+        onClick: () => {
+            page = page - 1
+            loadComics();
+        } 
+    },
+    { 
+        text: page, 
+        class: "btn",
+    },
+    { 
+        text: page + 1, 
+        class: "btn",
+        onClick: () => {
+            page = page + 1
+            loadComics();
+        } 
+    },
+    { 
+        text: ">>", 
+        class: "btn",
+        onClick: () => {
+            page = 400
+            loadComics();
+        }  
+    }
+];
+
+const pagination = document.createElement('div');
+pagination.setAttribute('id', 'pagination');
+pagination.classList.add('pagination');
+
+const renderButton = () => {
+    buttons.forEach(button => {
+
+        const buttonNode = document.createElement('button');
+        const textNode = document.createTextNode(button.text);
+        buttonNode.appendChild(textNode);
+        buttonNode.classList.add(button.class);
+    
+        buttonNode.addEventListener('click', button.onClick);
+    
+        pagination.appendChild(buttonNode);
+    
+    })
+}
+
+
+
+document.body.appendChild(pagination);
+
+
+
+
+
+
+
+
+
+
+
