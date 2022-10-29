@@ -1,14 +1,10 @@
 
-const loadComics = async (page) => {
+const loadComics = async () => {
 
     const params = new URLSearchParams(window.location.search);
+    const page = parseInt(params.get('p')) || 1;
 
-    // const comicsRsponse = await getComics(   
-    //     params.get('offset') ||  0, 
-    //     params.get('order') || "title" 
-    // );
-
-    const comicsRsponse = await getComics((page - 1) * 20, "title");
+    const comicsRsponse = await getComics(page, "title");
 
     const data = comicsRsponse.data
     const comics = data.results;
@@ -26,19 +22,11 @@ const loadComics = async (page) => {
     row.classList.add('row');
 
     comics.forEach(comic => {
-        // console.log(comic)
-
         const card = document.createElement('div');
         const cardImg = document.createElement('img');
         const cardBody = document.createElement('div');
         const col = document.createElement('div');
         const title = document.createElement('h2');
-
-        // card.addEventListener('click', () => {
-        //     loadDetail(comic);
-        //     results.classList.add('d-none');
-        //     backButton.classList.remove('d-none');
-        // })
 
         card.addEventListener('click', () => {
 
@@ -71,7 +59,8 @@ const loadComics = async (page) => {
 
         cardImg.setAttribute('src', `${comic.thumbnail.path}.${comic.thumbnail.extension}`);
     });
-    renderPagination(pagination, page)
+
+    renderPagination(Math.ceil(data.total / 20));
 }
 
 const formSearch = document.getElementById('search-comics');
@@ -110,22 +99,24 @@ const loadDetail = (comic) => {
 
 }
 
-const renderPagination = (pagination, page) => {
+const renderPagination = (totalPages) => {
+
+    const params = new URLSearchParams(window.location.search)
+    const page = parseInt(params.get('p')) || 1
 
     const buttons = [{ 
         text: "<<", 
         class: "btn",
         onClick: function() {
-            page = 1;
-            loadComics(page);
-            
+            params.set('p', 1);
+            window.location.href = window.location.pathname + '?' + params.toString()
         }
     },{ 
         text: page - 1, 
         class: "btn",
         onClick: function() {
-            page = page - 1
-            loadComics(page);
+            params.set('p', page - 1);
+            window.location.href = window.location.pathname + '?' + params.toString()
         } 
     },{ 
         text: page, 
@@ -134,19 +125,21 @@ const renderPagination = (pagination, page) => {
         text: page + 1, 
         class: "btn",
         onClick: function() {
-            page = page + 1
-            loadComics(page);
+            params.set('p', page + 1);
+            window.location.href = window.location.pathname + '?' + params.toString()
         } 
     },{ 
         text: ">>", 
         class: "btn",
         onClick: function() {
-            page = 400
-            loadComics(page);
+            params.set('p', totalPages);
+            window.location.href = window.location.pathname + '?' + params.toString()
         }
     }];
-    
-    pagination.innerHTML = "";
+
+    const pagination = document.createElement('div');
+    pagination.setAttribute('id', 'pagination');
+    pagination.classList.add('pagination'); 
     
     buttons.forEach(button => {
 
@@ -163,19 +156,9 @@ const renderPagination = (pagination, page) => {
 }
 
 
-let page = 1;
-
-
-
-const pagination = document.createElement('div');
-pagination.setAttribute('id', 'pagination');
-pagination.classList.add('pagination'); 
-
-
 
 const init = () => {
-    renderPagination(pagination, page)
-    loadComics(page);
+    loadComics();
 }
 
 init();
