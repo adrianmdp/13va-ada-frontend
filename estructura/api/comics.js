@@ -1,14 +1,18 @@
-
 const baseURL = "https://gateway.marvel.com/v1/public";
 const apikey = "b6849df79c330ccc82de737b5bf46124";
 
+const getComics = async (page, orderBy, query) => {
+  const offset = (page - 1) * 20;
 
-const getComics = async (page, orderBy) => {
+  let url = `${baseURL}/comics?apikey=${apikey}&limit=50`;
 
-    const offset = (page - 1) * 20;
+  if (offset) url += `&offset=${offset}`;
 
-    const response = await fetch(`${baseURL}/comics?apikey=${apikey}&offset=${offset}&orderBy=${orderBy}`)
-    const data = await response.json();
-    return data;
+  if (orderBy) url += `&orderBy=${orderBy}`;
 
-}
+  if (query !== "") url += `&titleStartsWith=${query}`;
+
+  const response = await fetch(url);
+  const data = await response.json();
+  return data;
+};
