@@ -8,7 +8,8 @@ function App() {
       {/* {page === "Home" && <Home />}
       {page === "Wall" && <Wall />} */}
 
-      {page === "Home" ? <Home /> : <Wall />}
+      {page === "Home" && <Home />}
+      {page === "Wall" && <Wall />}
     </>
   );
 }
