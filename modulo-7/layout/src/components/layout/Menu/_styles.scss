@@ -1,0 +1,24 @@
+.main-menu {
+    margin-left: auto;
+    
+    .navbar {
+        margin: 0;
+
+        .list-item {
+            list-style: none;            
+
+            .link-item {
+                text-decoration: none;
+                color: white;
+                padding: 10px 20px;
+
+                &:hover {
+                    background-color: rgba(0,0,0,0.2);
+                    border-radius: 20px;
+                }
+            }
+
+        }
+
+    }
+}
