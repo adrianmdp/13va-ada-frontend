@@ -7,8 +7,6 @@ const Menu = () => {
     
     const [isOpen, setIsOpen] = useState(false)
 
-    console.log(isOpen)
-
     const abrirModal = () => {
         setIsOpen(true)
     }
