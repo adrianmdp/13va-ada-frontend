@@ -1,4 +1,5 @@
 import { FC, ReactNode } from "react"
+import { Button } from "../Button"
 import './styles.scss'
 
 type Props = {
@@ -20,9 +21,9 @@ const Modal: FC<Props> = ({ children, title, action, isOpen }) => {
             <div className="custom-modal-body">
                 { children }
             </div>
+            <Button text="Enviar" type="button" variant="primary" isActive={false} />
         </div>
     )
-
 }
 
 export { Modal }

@@ -1,11 +1,23 @@
 
-import { useState } from "react";
+import { FC, useState } from "react";
 import { Modal } from "../../common"
 import { LoginForm } from "../../forms"
 
-const Menu = () => {
+type Props = {
+    page: string
+    onChangePage: (value: string) => void
+}
+
+
+const Menu: FC<Props> = ( { page, onChangePage } ) => {
     
     const [isOpen, setIsOpen] = useState(false)
+
+
+    const cambiarPagina = (p: string) => {
+        onChangePage(p)
+    //   setPage(p)
+    }
 
     const abrirModal = () => {
         setIsOpen(true)
@@ -18,12 +30,22 @@ const Menu = () => {
     return (
         <>
             <nav className="main-menu">
+                <div style={{color:'#FFF'}}>Estoy en la pagina: { page }</div>
                 <ul className="navbar">
                     <li className="list-item">
-                        <a className="link-item" href="/test">Item de menu</a>
+                        <button className="link-item" onClick={() => cambiarPagina("Dashboard")}>
+                            Home
+                        </button>
                     </li>
                     <li className="list-item">
-                        <a className="link-item" href="/test">Item de menu</a>
+                        <button className="link-item" onClick={() => cambiarPagina("Services")}>
+                            Servicios
+                        </button>
+                    </li>
+                    <li className="list-item">
+                        <button className="link-item" onClick={() => cambiarPagina("Contact")}>
+                            Contacto
+                        </button>
                     </li>
                     <li className="list-item">
                         <button className="link-item" onClick={abrirModal}>Iniciar sesión</button>

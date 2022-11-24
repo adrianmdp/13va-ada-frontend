@@ -5,28 +5,31 @@ import {  Contact, Dashboard, Services,  } from "./pages";
 
 function App() {
 
-  const [page, setPage] = useState("Dashboard")
+  const [page, setPage] = useState("Services")
 
-  const cambiarPagina = (p: string) => {
-    setPage(p)
+  const funcionDePrueba = (value: string) => {
+    setPage(value)
   }
 
   return (
     <div className="App">
-      <nav>
-        <button onClick={() => cambiarPagina("Dashboard")}>
-          Dashboard
-        </button>
-        <button onClick={() => cambiarPagina("Services")}>
-          Services
-        </button>
-        <button onClick={() => cambiarPagina("Contact")}>
-          Contact
-        </button>
-      </nav>
-      { page === "Dashboard" && <Dashboard /> }
-      { page === "Services" && <Services /> }
-      { page === "Contact" && <Contact /> }
+
+      <div>Estoy en App</div>
+
+
+      { page === "Dashboard" && 
+        <Dashboard page={page} onChangePage={funcionDePrueba} /> }
+
+      
+      { page === "Services" && 
+        <Services page={page} onChangePage={funcionDePrueba} /> }
+
+      
+      { page === "Contact" && 
+        <Contact page={page} onChangePage={funcionDePrueba} /> }
+
+
+
 
       <Modal title="Alerta: acción no permitida" isOpen={false} action={()=>{}}>
         <Alert>
