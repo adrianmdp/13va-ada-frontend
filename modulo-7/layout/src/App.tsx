@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Alert } from "./components/common";
 import { Modal } from "./components/common";
-import {  Contact, Dashboard, Services,  } from "./pages";
+import {  AddCategory, Contact, Dashboard, Services,  } from "./pages";
 
 function App() {
 
-  const [page, setPage] = useState("Services")
+  const [page, setPage] = useState("AddCategory")
 
   const funcionDePrueba = (value: string) => {
     setPage(value)
@@ -27,6 +27,9 @@ function App() {
       
       { page === "Contact" && 
         <Contact page={page} onChangePage={funcionDePrueba} /> }
+
+      { page === "AddCategory" && 
+        <AddCategory page={page} onChangePage={funcionDePrueba} /> }
 
 
 

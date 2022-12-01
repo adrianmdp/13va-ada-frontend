@@ -6,7 +6,7 @@ import { Main } from "../Main"
 type Props = {
     children: ReactNode
     title: string
-    className: string
+    className?: string
     page: string
     onChangePage: (value: string) => void
 }
