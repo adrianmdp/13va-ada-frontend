@@ -2,22 +2,14 @@
 import { FC, useState } from "react";
 import { Modal } from "../../common"
 import { LoginForm } from "../../forms"
+import { NavLink } from 'react-router-dom'
 
-type Props = {
-    page: string
-    onChangePage: (value: string) => void
-}
-
-
-const Menu: FC<Props> = ( { page, onChangePage } ) => {
+const Menu: FC = () => {
     
     const [isOpen, setIsOpen] = useState(false)
 
 
-    const cambiarPagina = (p: string) => {
-        onChangePage(p)
-    //   setPage(p)
-    }
+    const cambiarPagina = (p: string) => {}
 
     const abrirModal = () => {
         setIsOpen(true)
@@ -30,22 +22,27 @@ const Menu: FC<Props> = ( { page, onChangePage } ) => {
     return (
         <>
             <nav className="main-menu">
-                <div style={{color:'#FFF'}}>Estoy en la pagina: { page }</div>
+                <div style={{color:'#FFF'}}>Estoy en la pagina:</div>
                 <ul className="navbar">
                     <li className="list-item">
-                        <button className="link-item" onClick={() => cambiarPagina("Dashboard")}>
+                        <NavLink className="link-item" to="/">
                             Home
-                        </button>
+                        </NavLink>
                     </li>
                     <li className="list-item">
-                        <button className="link-item" onClick={() => cambiarPagina("Services")}>
+                        <NavLink className="link-item" to="/services">
                             Servicios
-                        </button>
+                        </NavLink>
                     </li>
                     <li className="list-item">
-                        <button className="link-item" onClick={() => cambiarPagina("Contact")}>
+                        <NavLink className="link-item" to="/contact">
                             Contacto
-                        </button>
+                        </NavLink>
+                    </li>
+                    <li className="list-item">
+                        <NavLink className="link-item" to="/add-category">
+                            Agregar Categoría
+                        </NavLink>
                     </li>
                     <li className="list-item">
                         <button className="link-item" onClick={abrirModal}>Iniciar sesión</button>

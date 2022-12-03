@@ -7,16 +7,14 @@ type Props = {
     children: ReactNode
     title: string
     className?: string
-    page: string
-    onChangePage: (value: string) => void
 }
 
-const Layout: FC<Props> = ({ children, title, className, page, onChangePage }) => {
+const Layout: FC<Props> = ({ children, title, className }) => {
 
     return(
         <>
             <div>Estoy en Layout</div>
-            <Header page={page} onChangePage={onChangePage} />
+            <Header />
             <Main title={title} className={className}>
                 {children}
             </Main>

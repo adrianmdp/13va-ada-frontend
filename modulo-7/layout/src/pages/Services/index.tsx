@@ -1,16 +1,12 @@
 import { FC } from "react"
 import { Layout } from "../../components/layout"
+import { Link } from 'react-router-dom'
 
-type Props = {
-    page: string
-    onChangePage: (value: string) => void
-}
-
-
-const Services: FC<Props> = ( { page, onChangePage } ) => {
+const Services: FC = () => {
     return(
-        <Layout title="Services" className="services page" page={page} onChangePage={onChangePage}>
+        <Layout title="Services" className="services page">
             Esta es mi page Services.
+            <Link to="/users">Ir a Users</Link>
         </Layout>
     )
 }

@@ -1,15 +1,9 @@
 import { FC } from "react"
 import { Layout } from "../../components/layout"
 
-type Props = {
-    page: string
-    onChangePage: (value: string) => void
-}
-
-
-const Dashboard: FC<Props> = ( { page, onChangePage } ) => {
+const Dashboard: FC = () => {
     return(
-        <Layout title="Dashboard" className="dashboard page" page={page} onChangePage={onChangePage}>
+        <Layout title="Dashboard" className="dashboard page">
             Este es el dashboard
         </Layout>
     )

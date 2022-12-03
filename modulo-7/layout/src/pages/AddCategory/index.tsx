@@ -2,12 +2,7 @@ import { FC, useState } from 'react'
 import {Layout} from '../../components/layout'
 import { addCategory } from '../../services/categories'
 
-type Props = {
-    page: string
-    onChangePage: (value: string) => void
-}
-
-const AddCategory: FC<Props> = ({page, onChangePage}) => {
+const AddCategory: FC = () => {
 
     const [catName, setCatName] = useState("")
 
@@ -17,7 +12,7 @@ const AddCategory: FC<Props> = ({page, onChangePage}) => {
     }
 
     return (
-        <Layout title='Crear categoría' onChangePage={onChangePage} page={page}>
+        <Layout title='Crear categoría' className='page add-category'>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="">Nombre</label>
