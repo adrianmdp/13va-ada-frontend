@@ -1,47 +1,57 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
 import { categoriesService } from "../../services";
 
 const SaveCategory = () => {
-  const [catName, setCatName] = useState("");
+  const [name, setName] = useState("");
+  const [color, setColor] = useState("");
 
-  const { categroyId } = useParams();
+  const [ifError, setIfError] = useState(false);
 
-  const fetchCategory = () => {
-    if (categroyId) {
-      categoriesService.get(categroyId).then((data) => {
-        setCatName(data.name);
-      });
-    }
-  };
-  fetchCategory();
-
-  const saveCategory = (e: any) => {
+  const enviarFormulario = async (e: any) => {
     e.preventDefault();
 
-    categoriesService.add({ name: catName });
+    setIfError(false);
+
+    const rta = await categoriesService.add({ color, name });
+
+    if (rta) {
+      setName("");
+      setColor("");
+    } else {
+      setIfError(true);
+    }
   };
 
   return (
-    <>
-      <h1>Guardar Categoría</h1>
-      <form onSubmit={saveCategory}>
-        <div className="form-group">
-          <label htmlFor="name-category">Nombre</label>
+    <div>
+      <hr />
+      <form onSubmit={enviarFormulario}>
+        <div>
+          <label htmlFor="name-control">Nombre</label>
           <input
             type="text"
             name="name"
-            id="name-category"
-            value={catName}
-            onChange={(e) => setCatName(e.target.value)}
+            id="name-control"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
         </div>
+        <div>
+          <label htmlFor="color-control">Color</label>
+          <input
+            type="color"
+            name="color"
+            id="color-control"
+            value={color}
+            onChange={(e) => setColor(e.target.value)}
+          />
+        </div>
+        <button type="submit">Enviar</button>
 
-        <button type="submit" className="btn btn-primary">
-          Agregar
-        </button>
+        {ifError && <p style={{ color: "red" }}>Hubo un error</p>}
       </form>
-    </>
+      <hr />
+    </div>
   );
 };
 

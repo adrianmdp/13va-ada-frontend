@@ -1,29 +1,43 @@
+import { DB_BASE_URL } from "../../constants";
+import { mapToArray } from "../../helpers/mapToArray";
+import { Categories } from "../../pages";
 import { Category } from "../../types";
 
-const getAll = () => {};
-
-const get = async (id: string) => {
-  const response = await fetch(
-    `https://todoapp-13ava-default-rtdb.firebaseio.com/categories/${id}.json`
-  );
-
+const getAll = async (): Promise<Category[]> => {
+  const response = await fetch(`${DB_BASE_URL}/categories.json`);
   const data = await response.json();
 
-  return data;
+  return mapToArray<Category>(data);
 };
+
+const get = (id: string) => {};
 
 type Payload = Omit<Category, "id">;
 
-const add = (category: Payload) => {
-  const options: RequestInit = {
+const add = async (category: Payload) => {
+  const options = {
     method: "POST",
     body: JSON.stringify(category),
   };
 
-  fetch(
-    "https://todoapp-13ava-default-rtdb.firebaseio.com/categories.json",
-    options
-  );
+  const response = await fetch(`${DB_BASE_URL}/categories.json`, options);
+  const data = await response.json();
+
+  if (data.name) {
+    return true;
+  } else {
+    return false;
+  }
 };
 
-export const categoriesService = { getAll, get, add };
+const update = (category: Partial<Category>) => {};
+
+const remove = async (id: string) => {
+  const options = {
+    method: "DELETE",
+  };
+
+  await fetch(`${DB_BASE_URL}/categories/${id}.json`, options);
+};
+
+export const categoriesService = { getAll, get, add, update, remove };
