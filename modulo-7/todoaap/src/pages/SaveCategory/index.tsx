@@ -26,7 +26,12 @@ const SaveCategory = () => {
 
     setIfError(false);
 
-    const rta = await categoriesService.add({ color, name });
+    let rta;
+    if (id) {
+      rta = await categoriesService.update({ id, name, color });
+    } else {
+      rta = await categoriesService.add({ color, name });
+    }
 
     if (rta) {
       navigate("/categories");
@@ -36,34 +41,35 @@ const SaveCategory = () => {
   };
 
   return (
-    <div>
-      <h1>{id}</h1>
-      <form onSubmit={enviarFormulario}>
-        <div>
-          <label htmlFor="name-control">Nombre</label>
-          <input
-            type="text"
-            name="name"
-            id="name-control"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="color-control">Color</label>
-          <input
-            type="color"
-            name="color"
-            id="color-control"
-            value={color}
-            onChange={(e) => setColor(e.target.value)}
-          />
-        </div>
-        <button type="submit">Enviar</button>
+    <form onSubmit={enviarFormulario}>
+      <div className="mb-3">
+        <label htmlFor="name-control">Nombre</label>
+        <input
+          type="text"
+          name="name"
+          id="name-control"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className="form-control"
+        />
+      </div>
+      <div className="mb-3">
+        <label htmlFor="color-control">Color</label>
+        <input
+          type="color"
+          name="color"
+          id="color-control"
+          value={color}
+          onChange={(e) => setColor(e.target.value)}
+          className="form-control form-control-color"
+        />
+      </div>
+      <button className="btn btn-primary" type="submit">
+        Enviar
+      </button>
 
-        {ifError && <p style={{ color: "red" }}>Hubo un error</p>}
-      </form>
-    </div>
+      {ifError && <p style={{ color: "red" }}>Hubo un error</p>}
+    </form>
   );
 };
 

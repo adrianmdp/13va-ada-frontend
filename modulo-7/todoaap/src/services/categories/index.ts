@@ -46,7 +46,21 @@ const add = async (category: Payload) => {
 /**
  *
  */
-const update = (category: Partial<Category>) => {};
+const update = async ({ id, name, color }: Category) => {
+  const options = {
+    method: "PUT",
+    body: JSON.stringify({ name, color }),
+  };
+
+  const response = await fetch(`${DB_BASE_URL}/categories/${id}.json`, options);
+  const data = await response.json();
+
+  if (data.name) {
+    return true;
+  } else {
+    return false;
+  }
+};
 
 const remove = async (id: string) => {
   const options = {
