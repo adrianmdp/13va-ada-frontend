@@ -1,15 +1,12 @@
-import { FC } from "react"
-import { Menu } from "../Menu"
-
+import { FC } from "react";
+import { Menu } from "../Menu";
 
 const Header: FC = () => {
+  return (
+    <header className="main-header">
+      <div className="container">Header</div>
+    </header>
+  );
+};
 
-    return (
-        <header className="main-header">
-            Header
-        </header>
-    )
-
-}
-
-export { Header } 
+export { Header };
