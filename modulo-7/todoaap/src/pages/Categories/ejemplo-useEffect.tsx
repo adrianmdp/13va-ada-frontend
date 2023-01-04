@@ -6,21 +6,31 @@ import { Category } from "../../types";
 
 const Categories = () => {
   const [categories, setCategories] = useState<Category[]>([]);
-  const [search, setSearch] = useState("");
-  const [color, setColor] = useState("");
 
   const navigate = useNavigate();
 
-  const fetchData = () =>
-    categoriesService.getAll(search, color).then((data) => setCategories(data));
-
-  useEffect(() => {
-    fetchData();
-  }, [search, color]);
-
   const borrarCategoria = async (id: string) => {
     await categoriesService.remove(id);
-    fetchData();
+    // obtenerCategorias();
+  };
+
+  const [test, setTest] = useState(0);
+  const [test2, setTest2] = useState(0);
+
+  useEffect(() => {
+    console.log("Estoy en useEffect");
+  }, [test2]);
+
+  useEffect(() => {
+    console.log("Estoy en useEffect 2");
+  });
+
+  const sumar = () => {
+    setTest(test + 1);
+  };
+
+  const sumar2 = () => {
+    setTest2(test2 + 1);
   };
 
   return (
@@ -29,22 +39,12 @@ const Categories = () => {
 
       <hr />
 
-      <form action="">
-        <input
-          type="text"
-          name="text"
-          id="text"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-        <input
-          type="text"
-          name="text"
-          id="text"
-          value={color}
-          onChange={(e) => setColor(e.target.value)}
-        />
-      </form>
+      <h1>
+        {test} - {test2}
+      </h1>
+
+      <button onClick={sumar}>Sumar</button>
+      <button onClick={sumar2}>Sumar</button>
 
       <hr />
 
