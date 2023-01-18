@@ -5,12 +5,28 @@ import { Category, Task } from "../../types";
 /**
  *
  */
-const getAll = async (): Promise<Category[]> => {
+type GetAllPayload = {
+  text?: string | null, 
+  color?: string | null
+}
+const getAll = async ({ text, color }: GetAllPayload): Promise<Category[]> => {
   const response = await fetch(`${DB_BASE_URL}/categories.json`);
   const data = await response.json();
 
-  return mapToArray<Category>(data);
-};
+  const arrayData = mapToArray<Category>(data);
+
+  return arrayData
+    .filter((cat) => {
+        if(text) {
+          console.log(text)
+          return cat.name.includes(text) 
+        }
+        return true
+    })
+    .filter(cat => color ? cat.color.includes(color) : true)
+}
+
+
 
 /**
  *

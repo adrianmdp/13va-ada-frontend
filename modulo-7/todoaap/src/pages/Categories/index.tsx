@@ -1,30 +1,44 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Button } from "../../components";
+import { useEffect, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { Button, FormCategories } from "../../components";
+import { Spinner } from "../../components";
 import { categoriesService } from "../../services";
 import { Category } from "../../types";
+import { FilterFileds } from "./types";
 
 const Categories = () => {
   const [categories, setCategories] = useState<Category[]>([]);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const navigate = useNavigate();
 
-  const obtenerCategorias = async () => {
-    const rta = await categoriesService.getAll();
+  useEffect(() => {
 
-    setCategories(rta);
-  };
+    const criteria = { 
+      text: searchParams.get('text'),
+      color: searchParams.get('color')
+    }
 
-  if (!categories.length) obtenerCategorias();
+    categoriesService.getAll(criteria).then(data => setCategories(data));
+  }, [searchParams])
 
   const borrarCategoria = async (id: string) => {
     await categoriesService.remove(id);
-    obtenerCategorias();
   };
+
+  const setSearchQuery = (params: FilterFileds) => {
+
+    setSearchParams(params)
+
+  }
+
+  if(!categories.length) return <Spinner />
 
   return (
     <div>
       <h1>Categorías</h1>
+
+      <FormCategories onSearch={setSearchQuery} />
 
       <table className="table">
         <thead>
@@ -41,7 +55,10 @@ const Categories = () => {
               <tr key={elem.id}>
                 <td>{elem.id}</td>
                 <td>{elem.name}</td>
-                <td>{elem.color}</td>
+                <td style={{display: 'flex', alignItems: 'center'}}>
+                  <span style={{width: 40, height: 40, borderRadius: 20, backgroundColor: elem.color, marginRight: 10}}></span>
+                  <span>{elem.color}</span>
+                </td>
                 <td>
                   <Button
                     variant="danger"
