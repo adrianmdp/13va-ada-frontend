@@ -1,3 +1,3 @@
 export { Footer, Header, Main, Menu } from "./layout";
-export { Button, Spinner } from "./common";
+export { Button, Spinner, ModalLogin } from "./common";
 export { FormCategories } from './forms'

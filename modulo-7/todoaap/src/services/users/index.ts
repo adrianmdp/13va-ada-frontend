@@ -1,8 +1,17 @@
 import { User } from "../../types";
+import { DB_BASE_URL } from '../../constants'
+import { mapToArray } from "../../helpers/mapToArray";
 
-const getAll = () => {};
+const getAll = async () => {
+    const response = await fetch(`${DB_BASE_URL}/users.json`);
+    const data = await response.json()
 
-const get = (id: string) => {};
+    return mapToArray<User>(data);
+};
+
+const get = () => {
+    
+};
 
 type Payload = Omit<User, "id">;
 
