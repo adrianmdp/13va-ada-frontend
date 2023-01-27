@@ -1,4 +1,5 @@
-import { FC, useState } from "react"
+import { FC, useContext, useState } from "react"
+import { AlertContext } from "../../../contexts"
 import { defaultValues, FormsFields } from "./defaultValues"
 
 type Props = {
@@ -9,9 +10,13 @@ const FormCategories: FC<Props> = ({ onSearch }) => {
 
     const [fields, setFileds] = useState(defaultValues)
 
+    const { showAlert } = useContext(AlertContext)
+
     const handleSubmit = (e: any) => {
         e.preventDefault()
         onSearch(fields)
+
+        showAlert(<>Se creó la categoría con éxito</>)
     }
 
     return(

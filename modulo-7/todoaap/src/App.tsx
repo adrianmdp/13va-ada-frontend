@@ -5,12 +5,14 @@ import { useAuth } from "./hooks";
 
 function App() {
 
-  const navigate = useNavigate()
-  const auth = useAuth()
+  
 
-  useEffect(() => {
-    if(!auth.isUserLoggedIn) navigate('/login')
-  }, [auth.isUserLoggedIn, navigate])
+  // const navigate = useNavigate()
+  // const auth = useAuth()
+
+  // useEffect(() => {
+  //   if(!auth.isUserLoggedIn) navigate('/login')
+  // }, [auth.isUserLoggedIn, navigate])
 
   return (
     <>
