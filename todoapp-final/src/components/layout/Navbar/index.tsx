@@ -16,6 +16,7 @@ const Navbar = () => {
                     <NavLink className="nav-link" to="/signup">Registro</NavLink>
                     <NavLink className="nav-link" to="/categories">Categorías</NavLink>
                     <NavLink className="nav-link" to="/users">Usuarios</NavLink>
+                    <NavLink className="nav-link" to="/add-task">Agregar tarea</NavLink>
                 </Nav>
                 </NavbarBTS.Collapse>
             </Container>

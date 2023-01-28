@@ -1,7 +1,7 @@
-import { SignUpForm } from "../types"
+import { SignUpPayload } from "../types"
 import { api } from "../utils/axios"
 
-const add = async (userPrueba: SignUpForm) => {
+const add = async (userPrueba: SignUpPayload) => {
 
     const response = await api.post('/users.json', userPrueba)
     return response.data

@@ -11,7 +11,10 @@ const SignUp = () => {
 
     const onSubmit = (data: SignUpForm) => {
 
-        servicesUser.add(data)
+        servicesUser.add({
+            ...data,
+            birthdate: new Date(data.birthdate)
+        })
 
     }
 

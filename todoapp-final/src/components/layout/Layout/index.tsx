@@ -1,4 +1,5 @@
 import { FC, ReactNode } from "react"
+import { Task } from "../../../types"
 import { Aside } from "../Aside"
 import { Footer } from "../Footer"
 import { Header } from "../Header"

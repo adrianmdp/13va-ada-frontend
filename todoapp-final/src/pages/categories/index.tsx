@@ -1,10 +1,11 @@
-import { Layout } from "../../components"
+import { AddCategoryForm, Layout } from "../../components"
 
 const Categories = () => {
 
     return (
         <Layout>
-                Categorías
+            <AddCategoryForm />
+            Categorías
         </Layout>
     )
 
