@@ -1,21 +1,22 @@
-import { FC } from "react"
-import { useStore } from "../../../hooks"
-import { Task } from "../../../types"
-import "./styles.scss"
-
+import { useTasks } from "../../../hooks";
+import "./styles.scss";
 
 const Aside = () => {
+  const { tasks } = useTasks();
 
-  const { tasks } = useStore()
+  return (
+    <aside className="main-aside">
+      <ul>
+        <li>Tareas: {tasks.length}</li>
+        <li>
+          Compras: {tasks.filter((t) => t.category.name === "Compras").length}
+        </li>
+        <li>
+          Mandados: {tasks.filter((t) => t.category.name === "Mandados").length}
+        </li>
+      </ul>
+    </aside>
+  );
+};
 
-    return (
-
-        <aside className="main-aside">
-          Tareas: {tasks.length}
-        </aside>
-
-    )
-
-}
-
-export { Aside }
+export { Aside };
