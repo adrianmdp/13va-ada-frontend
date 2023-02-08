@@ -1,13 +1,12 @@
-import { Layout, SignUpForm } from "../../components"
+import { Layout, SignUpForm } from "../../components";
+import { withAuth } from "../../hoc";
 
-const SignUp = () => {
+const SignUpPage = () => {
+  return (
+    <Layout>
+      <SignUpForm />
+    </Layout>
+  );
+};
 
-    return (
-        <Layout>
-            <SignUpForm />
-        </Layout>
-    )
-
-}
-
-export { SignUp }
+export const SignUp = withAuth(SignUpPage);

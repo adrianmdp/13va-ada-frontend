@@ -1,10 +1,15 @@
+import { useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { Layout, Task } from "../../components";
+import { withAuth } from "../../hoc";
 import { useTasks } from "../../hooks";
 
-const Dashboard = () => {
-  const { tasks, removeTask } = useTasks();
+const DashboardPage = () => {
+  const { tasks, removeTask, loadTasks } = useTasks();
 
+  useEffect(() => {
+    loadTasks();
+  }, []);
   return (
     <Layout>
       <Container fluid className="p-4">
@@ -20,4 +25,4 @@ const Dashboard = () => {
   );
 };
 
-export { Dashboard };
+export const Dashboard = withAuth(DashboardPage);

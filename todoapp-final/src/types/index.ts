@@ -1,32 +1,41 @@
 export type User = {
-    id: string
-    name: string
-    lastname: string
-    email: string
-    password: string
-    birthdate: Date
-}
+  id: string;
+  name: string;
+  lastname: string;
+  email: string;
+  password: string;
+  birthdate: Date;
+  token?: string | null;
+};
 
-export type SignUpForm = Omit<User, 'id' | 'birthdate'> & { birthdate: Date}
-export type SignUpPayload = SignUpForm
+export type SignUpForm = Omit<User, "id" | "birthdate"> & { birthdate: Date };
+export type SignUpPayload = SignUpForm;
 
 export type Category = {
-    id: string
-    name: string
-    color: string
-}
+  id: string;
+  name: string;
+  color: string;
+};
 
-export type AddCategoryForm = Omit<Category, 'id'>
-export type AddCategoryPayload = AddCategoryForm
+export type AddCategoryForm = Omit<Category, "id">;
+export type AddCategoryPayload = AddCategoryForm;
 
 export type Task = {
-    id: string
-    title: string
-    date: Date
-    category: Category
-    description: string
-    status: string
-}
+  id: string;
+  title: string;
+  date: Date;
+  category: Category;
+  description: string;
+  status: string;
+};
 
-export type AddTaskForm = Omit<Task, 'id' | 'category' | 'date'> & { category: string, date: string }
-export type AddTaskPayload = Omit<Task, 'id'>
+export type AddTaskForm = Omit<Task, "id" | "category" | "date"> & {
+  category: string;
+  date: string;
+};
+export type AddTaskPayload = Omit<Task, "id">;
+
+export type LoginForm = {
+  email: string;
+  pass: string;
+};

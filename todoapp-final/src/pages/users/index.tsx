@@ -1,16 +1,9 @@
-import { Layout } from "../../components"
-import "./users.css"
+import { Layout } from "../../components";
+import { withAuth } from "../../hoc";
+import "./users.css";
 
-const Users = () => {
+const UsersPage = () => {
+  return <Layout>Pagina users</Layout>;
+};
 
-    return (
-
-        <Layout>
-            Pagina users
-        </Layout>
-
-    )
-
-}
-
-export { Users }
+export const Users = withAuth(UsersPage);

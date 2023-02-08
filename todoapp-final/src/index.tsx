@@ -1,15 +1,18 @@
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './assets/scss/main.scss'
-import { StoreProvider } from './contexts';
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./assets/scss/main.scss";
 
+import { AuthProvider } from "./contexts/auth";
+import { StoreProvider } from "./contexts";
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 root.render(
-  <StoreProvider>
-    <App />
-  </StoreProvider>
+  <AuthProvider>
+    <StoreProvider>
+      <App />
+    </StoreProvider>
+  </AuthProvider>
 );

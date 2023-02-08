@@ -1,14 +1,13 @@
-import { AddCategoryForm, Layout } from "../../components"
+import { AddCategoryForm, Layout } from "../../components";
+import { withAuth } from "../../hoc";
 
-const Categories = () => {
+const CategoriesPage = () => {
+  return (
+    <Layout>
+      <AddCategoryForm />
+      Categorías
+    </Layout>
+  );
+};
 
-    return (
-        <Layout>
-            <AddCategoryForm />
-            Categorías
-        </Layout>
-    )
-
-}
-
-export { Categories }
+export const Categories = withAuth(CategoriesPage);

@@ -1,13 +1,12 @@
-import { AddTaskForm, Layout } from "../../components"
+import { AddTaskForm, Layout } from "../../components";
+import { withAuth } from "../../hoc";
 
-const AddTask = () => {
+const AddTaskPage = () => {
+  return (
+    <Layout>
+      <AddTaskForm />
+    </Layout>
+  );
+};
 
-    return(
-        <Layout>
-            <AddTaskForm />
-        </Layout>
-    )
-
-}
-
-export { AddTask }
+export const AddTask = withAuth(AddTaskPage);
